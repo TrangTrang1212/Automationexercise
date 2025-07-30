@@ -64,7 +64,7 @@ public class Scenario1Test extends BaseTest {
     public void s1_TC03(){
         try {
             login.loginWith(generatedEmail,"123456");
-            if (register.isRegisterSuccess()) {
+            if (login.isLoginSuccess()) {
                 System.out.println("Login Successfully.");
             } else {
                 System.out.println("Login failed.");
