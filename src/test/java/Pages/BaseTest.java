@@ -6,6 +6,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -35,7 +36,7 @@ public class BaseTest {
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver", "C:\\Drivers\\edgedriver_win64\\msedgedriver.exe");
-                driver = new FirefoxDriver();
+                driver = new EdgeDriver();
                 break;
             default:
                 throw new IllegalArgumentException("Trình duyệt không được hỗ trợ: " + browser);
