@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="">
+    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="Scenario1Test4 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,14 +89,32 @@
       <option name="project" value="LOCAL" />
       <updated>1753950480315</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Scenario1Test4 commit">
+      <option name="closed" value="true" />
+      <created>1753950902094</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753950902095</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Scenario1Test5 commit">
+      <option name="closed" value="true" />
+      <created>1753951229777</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1753951229777</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Scenario1Test1 commit" />
     <MESSAGE value="Scenario1Test2 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scenario1Test2 commit" />
+    <MESSAGE value="Scenario1Test4 commit" />
+    <MESSAGE value="Scenario1Test5 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scenario1Test5 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

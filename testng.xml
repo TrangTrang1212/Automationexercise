@@ -6,14 +6,14 @@
                 <class name="Tests.Scenario1Test"/>
             </classes>
         </test>
-    <!--
+
             <test name="Test on Firefox">
                 <parameter name="browser" value="firefox"/>
                 <classes>
                     <class name="Tests.Scenario1Test"/>
                 </classes>
             </test>
-    -->
+
             <test name="Test on Edge">
                 <parameter name="browser" value="edge"/>
                 <classes>
