@@ -29,10 +29,10 @@ public class Login {
     public boolean isLoginSuccess() {
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Logged in as']")));
+            WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a/text()")));
             String textTitle = text.getText();
             System.out.println(textTitle);
-            return textTitle.contains("Logged in as");
+            return textTitle.contains(" Logged in as ");
         } catch (Exception e) {
             return false;
         }

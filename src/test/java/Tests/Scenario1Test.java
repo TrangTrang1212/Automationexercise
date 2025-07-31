@@ -64,11 +64,11 @@ public class Scenario1Test extends BaseTest {
     public void s1_TC03(){
         try {
             login.loginWith(generatedEmail,"123456");
-            if (login.isLoginSuccess()) {
-                System.out.println("Login Successfully.");
-            } else {
-                System.out.println("Login failed.");
-            }
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")));
+            String textTitle = text.getText();
+            System.out.println(textTitle);
+            assertTrue(textTitle.contains("Logged in as"),"Login failed");
         }catch (Exception e){
             fail("Error " +e.getMessage());
         }
@@ -81,6 +81,7 @@ public class Scenario1Test extends BaseTest {
             login.loginWith(generatedEmail,"12345");
             WebElement erorr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
             String textError = erorr.getText();
+            System.out.println(textError);
             assertTrue(textError.contains("Your email or password is incorrect!"), "Login success");
         }catch (Exception e){
             fail("Error " +e.getMessage());
