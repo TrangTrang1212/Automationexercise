@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
@@ -36,7 +37,14 @@ public class BaseTest {
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver", "C:\\Drivers\\edgedriver_win64\\msedgedriver.exe");
-                driver = new EdgeDriver();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.addArguments("--headless"); // ✅ Không cần GUI
+                edgeOptions.addArguments("--disable-gpu"); // ✅ Khắc phục lỗi DevToolsActivePort
+                edgeOptions.addArguments("--no-sandbox");
+                edgeOptions.addArguments("--remote-allow-origins=*");
+                edgeOptions.addArguments("--disable-dev-shm-usage");
+
+                driver = new EdgeDriver(edgeOptions);
                 break;
             default:
                 throw new IllegalArgumentException("Trình duyệt không được hỗ trợ: " + browser);
