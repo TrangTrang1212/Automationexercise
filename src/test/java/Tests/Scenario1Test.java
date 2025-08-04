@@ -1,6 +1,9 @@
 package Tests;
 
 import Pages.*;
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+import org.json.JSONObject;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,8 +14,14 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.fail;
+
 
 
 public class Scenario1Test extends BaseTest {
@@ -85,6 +94,45 @@ public class Scenario1Test extends BaseTest {
             assertTrue(textError.contains("Your email or password is incorrect!"), "Login success");
         }catch (Exception e){
             fail("Error " +e.getMessage());
+        }
+    }
+    @Test
+    public void s1_TC07(){
+        try {
+            RestAssured.baseURI = "https://automationexercise.com";
+            String email = "rdemo" + System.currentTimeMillis() + "@gdemo.com";
+
+            Response response = given()
+                    .contentType("application/x-www-form-urlencoded")
+                    .formParam("name", "rdemo")
+                    .formParam("email", email)
+                    .formParam("password", "1234")
+                    .formParam("title", "Mr")
+                    .formParam("birth_date", "10")
+                    .formParam("birth_month", "08")
+                    .formParam("birth_year", "2000")
+                    .formParam("firstname", "rde")
+                    .formParam("lastname", "mo")
+                    .formParam("company", "TestCompany")
+                    .formParam("address1", "hem co dia chi")
+                    .formParam("address2", "duong phu")
+                    .formParam("country", "Vietnam")
+                    .formParam("state", "HCM")
+                    .formParam("city", "HCM")
+                    .formParam("zipcode", "70000")
+                    .formParam("mobile_number", "0987654321")
+                    .when()
+                    .post("/api/createAccount");
+            String rawBody = response.getBody().asString();
+            System.out.println("Raw body: " + rawBody);
+
+            JSONObject json = new JSONObject(rawBody);
+
+            assertEquals(response.getStatusCode(), 200);
+            assertEquals(json.getInt("responseCode"), 201);
+            assertTrue(json.getString("message").contains("User created!"));
+        }catch (Exception e){
+            fail("Error: " +e.getMessage());
         }
     }
 
