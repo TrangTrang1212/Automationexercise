@@ -29,7 +29,20 @@ public class BaseTest {
         switch (browser.toLowerCase()) {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver-win64\\chromedriver.exe");
-                driver = new ChromeDriver();
+                ChromeOptions chromeOptions = new ChromeOptions();
+
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                prefs.put("profile.default_content_setting_values.notifications", 2);
+                prefs.put("profile.default_content_setting_values.geolocation", 2);
+
+                chromeOptions.setExperimentalOption("prefs", prefs);
+
+                chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                chromeOptions.setExperimentalOption("useAutomationExtension", false);
+
+                driver = new ChromeDriver(chromeOptions);
                 break;
             case "firefox":
                 System.setProperty("webdriver.firefox.driver", "C:\\Drivers\\geckodriver-v0.35.0-win64\\geckodriver.exe");
@@ -37,14 +50,7 @@ public class BaseTest {
                 break;
             case "edge":
                 System.setProperty("webdriver.edge.driver", "C:\\Drivers\\edgedriver_win64\\msedgedriver.exe");
-                EdgeOptions edgeOptions = new EdgeOptions();
-                edgeOptions.addArguments("--headless"); // ✅ Không cần GUI
-                edgeOptions.addArguments("--disable-gpu"); // ✅ Khắc phục lỗi DevToolsActivePort
-                edgeOptions.addArguments("--no-sandbox");
-                edgeOptions.addArguments("--remote-allow-origins=*");
-                edgeOptions.addArguments("--disable-dev-shm-usage");
-
-                driver = new EdgeDriver(edgeOptions);
+                driver = new EdgeDriver();
                 break;
             default:
                 throw new IllegalArgumentException("Trình duyệt không được hỗ trợ: " + browser);
