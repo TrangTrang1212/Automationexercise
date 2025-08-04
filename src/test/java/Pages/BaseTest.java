@@ -26,6 +26,7 @@ public class BaseTest {
     public void setUp(@Optional("chrome") String browser) {
         //Tắt warring
         Logger.getLogger("org.openqa.selenium").setLevel(Level.OFF);
+        System.out.println("===== Đang chạy trên trình duyệt: " + browser.toUpperCase() + " =====");
         switch (browser.toLowerCase()) {
             case "chrome":
                 System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver-win64\\chromedriver.exe");
