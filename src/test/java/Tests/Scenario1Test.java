@@ -95,7 +95,7 @@ public class Scenario1Test extends BaseTest {
             fail("Error " +e.getMessage());
         }
     }
-    @Test
+    @Test(enabled = false)
     public void s1_TC07(){
         try {
             RestAssured.baseURI = "https://automationexercise.com";

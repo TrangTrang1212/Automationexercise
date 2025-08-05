@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,7 +38,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Scenario2",
+    "git-widget-placeholder": "master",
     "onboarding.tips.debug.path": "C:/Users/TRANG/Documents/java/Automationexercise/src/main/java/org/example/Main.java"
   }
 }]]></component>
