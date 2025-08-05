@@ -24,7 +24,7 @@ public class Scenario2Test extends BaseTest {
 
     @BeforeMethod
     public void beforeEachMethod(Method method){
-        super.beforeMethod(method); // Gọi log từ BaseTest
+        //super.beforeMethod(method); // Gọi log từ BaseTest
         login = new Login(driver);
         register = new Register(driver);
     }

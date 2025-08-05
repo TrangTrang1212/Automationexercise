@@ -30,7 +30,7 @@ public class Scenario1Test extends BaseTest {
     private Login login;
     @BeforeMethod
     public void beforeEachMethod(Method method){
-        super.beforeMethod(method); // Gọi log từ BaseTest
+        //super.beforeMethod(method); // Gọi log từ BaseTest
         register = new Register(driver);
         fillInfo = new FillInfo(driver);
         logout = new Logout(driver);
