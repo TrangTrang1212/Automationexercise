@@ -11,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 import static org.testng.AssertJUnit.assertTrue;
@@ -22,7 +23,8 @@ public class Scenario2Test extends BaseTest {
     private String generatedEmail;
 
     @BeforeMethod
-    public void beforeEachMethod(){
+    public void beforeEachMethod(Method method){
+        super.beforeMethod(method); // Gọi log từ BaseTest
         login = new Login(driver);
         register = new Register(driver);
     }

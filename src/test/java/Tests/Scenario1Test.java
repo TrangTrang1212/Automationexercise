@@ -12,12 +12,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.lang.reflect.Method;
 import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
-import static io.restassured.RestAssured.when;
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 import static org.testng.AssertJUnit.fail;
@@ -31,7 +29,8 @@ public class Scenario1Test extends BaseTest {
     private String generatedEmail;
     private Login login;
     @BeforeMethod
-    public void beforeEachMethod(){
+    public void beforeEachMethod(Method method){
+        super.beforeMethod(method); // Gọi log từ BaseTest
         register = new Register(driver);
         fillInfo = new FillInfo(driver);
         logout = new Logout(driver);
