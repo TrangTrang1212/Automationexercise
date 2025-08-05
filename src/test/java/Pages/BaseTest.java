@@ -33,13 +33,15 @@ public class BaseTest {
                 ChromeOptions chromeOptions = new ChromeOptions();
 
                 Map<String, Object> prefs = new HashMap<>();
-                prefs.put("credentials_enable_service", false);
-                prefs.put("profile.password_manager_enabled", false);
-                prefs.put("profile.default_content_setting_values.notifications", 2);
-                prefs.put("profile.default_content_setting_values.geolocation", 2);
+                prefs.put("credentials_enable_service", false); // tắt đề xuất lưu mật khẩu
+                prefs.put("profile.password_manager_enabled", false); // tắt trình quản lý mật khẩu
+                prefs.put("profile.default_content_setting_values.notifications", 2); // tắt notification popup
+                prefs.put("profile.default_content_setting_values.geolocation", 2); // tắt location popup
+                prefs.put("autofill.profile_enabled", false); // 🔥 TẮT autofill (popup "Save address?")
 
                 chromeOptions.setExperimentalOption("prefs", prefs);
 
+                // Ẩn popup "Chrome is being controlled by automated test software"
                 chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
 

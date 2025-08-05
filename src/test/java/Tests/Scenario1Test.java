@@ -40,7 +40,6 @@ public class Scenario1Test extends BaseTest {
     @Test (priority = 1)
     public void s1_TC01(){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             String uniqueEmail = "demo@testt" + System.currentTimeMillis() % 10000 + ".vn";
             register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
             if (register.isRegisterSuccess()) {
