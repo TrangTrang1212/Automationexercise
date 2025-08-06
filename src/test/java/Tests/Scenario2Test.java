@@ -29,7 +29,7 @@ public class Scenario2Test extends BaseTest {
         register = new Register(driver);
     }
     @Test
-    public void S2_TC03(){
+    public void s2_TC03(){
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             String uniqueEmail = "demo@yyyq" + System.currentTimeMillis() % 10000 + ".vn";
@@ -46,7 +46,7 @@ public class Scenario2Test extends BaseTest {
         }
     }
     @Test
-    public void S2_TC04(){
+    public void s2_TC04(){
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             login.loginWith(generatedEmail,"123456");

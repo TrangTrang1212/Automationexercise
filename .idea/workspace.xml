@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="">
+    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="S3 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/ScrollUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Search.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +49,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Scenario3",
     "onboarding.tips.debug.path": "C:/Users/TRANG/Documents/java/Automationexercise/src/main/java/org/example/Main.java"
   }
 }]]></component>
@@ -107,7 +111,8 @@
     <MESSAGE value="S1 finish commit" />
     <MESSAGE value="S2_1 commit" />
     <MESSAGE value="S2_2 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="S2_2 commit" />
+    <MESSAGE value="S3 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="S3 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

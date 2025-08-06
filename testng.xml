@@ -38,4 +38,23 @@
                 <class name="Tests.Scenario2Test"/>
             </classes>
         </test>
+
+        <test name="Scenario3 - Chrome">
+            <parameter name="browser" value="chrome"/>
+            <classes>
+                <class name="Tests.Scenario3Test"/>
+            </classes>
+        </test>
+        <test name="Scenario3 - Firefox">
+            <parameter name="browser" value="firefox"/>
+            <classes>
+                <class name="Tests.Scenario3Test"/>
+            </classes>
+        </test>
+        <test name="Scenario3 - Edge">
+            <parameter name="browser" value="edge"/>
+            <classes>
+                <class name="Tests.Scenario3Test"/>
+            </classes>
+        </test>
     </suite>
