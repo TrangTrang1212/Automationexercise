@@ -39,7 +39,6 @@ public class FillInfo {
         }catch (Exception e){
             FileAssert.fail("Test error: " +e.getMessage());
         }
-
     }
     public void fillEnterAccountInfo(String value, String password, String day, String month, String year, String newsletter, String optin, String nameF, String nameL, String address, String country, String state, String city, String zipcode, String phone){
         try {
@@ -69,6 +68,22 @@ public class FillInfo {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("mobile_number"))).sendKeys(phone);
         }catch (Exception e){
             fail("Erorr" +e.getMessage());
+        }
+    }
+    public void fillReview(String name, String email, String review){
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("name")));
+            nameField.clear();
+            nameField.sendKeys(name);
+            WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
+            emailField.clear();
+            emailField.sendKeys(email);
+            WebElement reviewField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("review")));
+            reviewField.clear();
+            reviewField.sendKeys(review);
+        }catch (Exception e){
+            FileAssert.fail("Test error: " +e.getMessage());
         }
     }
 }
