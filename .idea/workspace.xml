@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/ExtentReportListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Search.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/ExtentReportListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/ExtentReportListener.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +113,15 @@
       <option name="project" value="LOCAL" />
       <updated>1754988039578</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="S4_2 commit">
+      <option name="closed" value="true" />
+      <created>1754996761664</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1754996761664</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -138,7 +133,8 @@
     <MESSAGE value="S4 commit" />
     <MESSAGE value="S3 commit" />
     <MESSAGE value="S4_1 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="S4_1 commit" />
+    <MESSAGE value="S4_2 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="S4_2 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

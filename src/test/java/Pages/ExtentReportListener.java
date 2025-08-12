@@ -8,6 +8,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.*;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -19,15 +20,23 @@ public class ExtentReportListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onStart(ISuite suite) {
-        String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-        ExtentSparkReporter reporter = new ExtentSparkReporter("extent-reports/ExtentReport_" + timeStamp + ".html");
+        // Đặt thư mục report cố định
+        String reportDir = System.getProperty("user.dir") + "/ExtentReport";
+        File dir = new File(reportDir);
+        if (!dir.exists()) {
+            dir.mkdirs(); // tạo thư mục nếu chưa có
+        }
+
+        // File report sẽ ghi đè mỗi lần chạy Jenkins
+        ExtentSparkReporter reporter = new ExtentSparkReporter(reportDir + "/ExtentReport.html");
+
         reporter.config().setDocumentTitle("Automation Report");
         reporter.config().setReportName("TestNG Selenium Report");
         reporter.config().setTheme(Theme.STANDARD);
 
         extent = new ExtentReports();
         extent.attachReporter(reporter);
-        extent.setSystemInfo("Host Name", "Localhost");
+        extent.setSystemInfo("Host Name", "Jenkins Server");
         extent.setSystemInfo("Environment", "QA");
         extent.setSystemInfo("User Name", System.getProperty("user.name"));
     }
