@@ -43,11 +43,11 @@ public class Scenario1Test extends BaseTest {
             //s1_TC01
             String uniqueEmail = "demo@testt" + System.currentTimeMillis() % 10000 + ".vn";
             register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
-            if (register.isRegisterSuccess()) {
-                System.out.println("Register Successfully.");
-            } else {
-                System.out.println("Register failed.");
-            }
+            WebElement textSignup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center']/child::b")));
+            String textTitleSignup = textSignup.getText();
+            System.out.println(textTitleSignup);
+            assertTrue(textTitleSignup.contains("ACCOUNT CREATED!"), "Email Address already exist!");
+            ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT CREATED! success");
             generatedEmail = uniqueEmail;
 
             //s1_TC02
@@ -60,12 +60,14 @@ public class Scenario1Test extends BaseTest {
             String texterorr = text.getText();
             System.out.println(texterorr);
             assertTrue(texterorr.contains("Email Address already exist!"), "Chưa có account tồn tại");
+            ExtentReportListener.logStepWithScreenshot(driver, "Email already exist! message displayed");
             //s1_TC03
             login.loginWith(generatedEmail,"123456");
             WebElement text1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")));
             String textTitle = text1.getText();
             System.out.println(textTitle);
             assertTrue(textTitle.contains("Logged in as"),"Login failed");
+            ExtentReportListener.logStepWithScreenshot(driver, "Login successful with correct password");
             //s1_TC04
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Logout']"))).click();
             login.loginWith(generatedEmail,"12345");
@@ -73,6 +75,7 @@ public class Scenario1Test extends BaseTest {
             String textError1 = erorr1.getText();
             System.out.println(textError1);
             assertTrue(textError1.contains("Your email or password is incorrect!"), "Login success");
+            ExtentReportListener.logStepWithScreenshot(driver, "Incorrect password message displayed");
         }catch (Exception e){
             fail("Error " +e.getMessage());
         }

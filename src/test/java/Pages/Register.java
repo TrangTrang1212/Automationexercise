@@ -40,7 +40,7 @@ public class Register {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center']/child::b")));
             String textTitle = text.getText();
-            System.out.println(textTitle);
+            //System.out.println(textTitle);
             return textTitle.contains("ACCOUNT CREATED!");
         } catch (Exception e) {
             return false;

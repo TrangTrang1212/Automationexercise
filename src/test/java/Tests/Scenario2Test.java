@@ -1,6 +1,7 @@
 package Tests;
 
 import Pages.BaseTest;
+import Pages.ExtentReportListener;
 import Pages.Login;
 import Pages.Register;
 import org.openqa.selenium.By;
@@ -41,13 +42,15 @@ public class Scenario2Test extends BaseTest {
             WebElement deleteTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center' and @data-qa='account-deleted']/child::b")));
             String text = deleteTitle.getText();
             assertTrue("Account hasn't been delete", text.contains("ACCOUNT DELETED!"));
-            System.out.println(text);
+            ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT DELETED! successfully");
+            //System.out.println(text);
             //S2_TC03
             login.loginWith(generatedEmail,"123456");
             WebElement erorr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
             String textError = erorr.getText();
             System.out.println(textError);
             Assert.assertTrue(textError.contains("Your email or password is incorrect!"), "Login success");
+            ExtentReportListener.logStepWithScreenshot(driver, "Your email or password is incorrect! message displayed");
         }catch (Exception e){
             fail("Error " +e.getMessage());
         }

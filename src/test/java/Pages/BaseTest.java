@@ -1,5 +1,6 @@
 package Pages;
 
+import com.aventstack.extentreports.ExtentTest;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 
 public class BaseTest {
     protected WebDriver driver;
+
 
     protected String driverName() {
         return driver.getClass().getSimpleName().replace("Driver", "");
@@ -89,18 +91,7 @@ public class BaseTest {
     }
 
     @AfterMethod
-    public void tearDownMethod(ITestResult result) {
-        if (ITestResult.FAILURE == result.getStatus()) {
-            try {
-                TakesScreenshot screenshot = (TakesScreenshot) driver;
-                File srcFile = screenshot.getScreenshotAs(OutputType.FILE);
-                File destFile = new File("screenshots/" + result.getName() + ".png");
-                FileUtils.copyFile(srcFile, destFile);
-                System.out.println("Screenshot captured for failed test: " + destFile.getAbsolutePath());
-            } catch (IOException e) {
-                System.out.println("Error capturing screenshot: " + e.getMessage());
-            }
-        }
+    public void tearDownMethod() {
 
         try {
             Logout logoutPage = new Logout(driver);
@@ -110,8 +101,6 @@ public class BaseTest {
             if (registerPage.isRegisterSuccess() || login.isLoginSuccess()) {
                 logoutPage.logout();
                // System.out.println("Successfully logged out after test.");
-            } else {
-                System.out.println("Logout skipped due to failed registration or login.");
             }
         } catch (Exception e) {
             System.out.println("Error during logout: " + e.getMessage());
@@ -125,4 +114,5 @@ public class BaseTest {
             System.out.println("Browser closed.");
         }
     }
+
 }

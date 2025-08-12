@@ -34,7 +34,7 @@ public class Search {
             List<WebElement> products = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='features_items']//div[@class='col-sm-4']//div[@class='productinfo text-center']/p")));
             for (WebElement product : products) {
                 String productName = product.getText();
-                System.out.println("Found product containing keyword '" + keyword + "': " + productName);
+                //System.out.println("Found product containing keyword '" + keyword + "': " + productName);
             }
             return true;
         } catch (Exception e) {

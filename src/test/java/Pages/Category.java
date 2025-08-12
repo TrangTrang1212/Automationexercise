@@ -45,7 +45,7 @@ public class Category {
             WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class = 'title text-center']")));
             String title = textTitle.getText();
             String expectedTitle = String.format("%s - %s Products", ca, sub).toUpperCase();;
-            System.out.println("Actual title: " + title);
+            //System.out.println("Actual title: " + title);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/']"))).click();
             return title.contains(expectedTitle);
         }catch (Exception e){
@@ -59,7 +59,7 @@ public class Category {
             WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class = 'title text-center']")));
             String title = textTitle.getText();
             String expectedTitle = String.format("Brand - %s Products", brand).toUpperCase();;
-            System.out.println("Actual title: " + title);
+            //System.out.println("Actual title: " + title);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/']"))).click();
             return title.contains(expectedTitle);
         }catch (Exception e){

@@ -30,11 +30,11 @@ public class Product {
             //Lấy giá tiền
             WebElement price = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'single-products')]//p[contains(text(), '"+ product + "')]/../h2")));
             textPrice = price.getText();
-            System.out.println(textPrice);
+            //System.out.println(textPrice);
             //Lấy attribute link hình
             WebElement img = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'single-products')]//p[text()='"+ product + "']/../..//img")));
             imgText = img.getAttribute("src");
-            System.out.println(imgText);
+            //System.out.println(imgText);
             //Click vào button View detail
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='productinfo text-center']/p[text()='"+ product + "']/../../..//a[@href='/product_details/1' and contains(., 'View Product')]"))).click();
         }catch (Exception e){
@@ -47,15 +47,15 @@ public class Product {
 
             WebElement productName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'product-information')]/h2")));
             String textProductName = productName.getText();
-            System.out.println(textProductName);
+            //System.out.println(textProductName);
 
             WebElement priceDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'product-information')]/span/span[not(label)]")));
             String textPriceDetail = priceDetail.getText();
-            System.out.println(textPriceDetail);
+            //System.out.println(textPriceDetail);
 
             WebElement imgDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'view-product')]/img")));
             String textImgDetail = imgDetail.getAttribute("src");
-            System.out.println(textImgDetail);
+            //System.out.println(textImgDetail);
             // So sánh img src
             boolean isImgSrcMatch = imgText.equals(textImgDetail);
             boolean isPriceMatch = textPrice.equals(textPriceDetail);

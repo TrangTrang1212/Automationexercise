@@ -30,7 +30,7 @@ public class Cart {
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='btn btn-default cart']"))).click();
             WebElement textAdded = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//h4[@class='modal-title w-100']")));
             String text = textAdded.getText();
-            System.out.println(text);
+            //System.out.println(text);
 
             WebElement productName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'product-information')]/h2")));
             textProductName = productName.getText();
