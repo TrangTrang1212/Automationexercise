@@ -21,28 +21,25 @@ public class Scenario4Test extends BaseTest {
         review = new Review(driver);
     }
     @Test
-    public void s4_TC01(){
+    public void cartTest(){
+        //S4_TC01
         String product = "Blue Top";
         product1.productDetail(product);
         boolean isMatch = product1.isMatchProduct(product);
-        assertTrue( "Product không khớp", isMatch);
-    }
-    @Test
-    public void s4_TC02(){
+        assertTrue( "Product doesn't match", isMatch);
+        //S4_TC02
         String qty = "2";
         cart.addToCart(qty);
         boolean isAddToCart = cart.isAddSuccess();
-        assertTrue( "Không thêm product vào giỏ hàng ", isAddToCart);
-        boolean isViewCart = cart.isViewCartSuccess(qty);
-        assertTrue( "Hiển thị không đúng product", isViewCart);
+        assertTrue( "Can't add to cart ", isAddToCart);
+        boolean isViewCart = cart.isViewCartSuccess_01(qty);
+        assertTrue( "Product is showed incorrectly", isViewCart);
         driver.findElement(By.xpath("//a[@href='/']")).click();
-    }
-    @Test
-    public void s4_TC03(){
-        String product = "Blue Top";
+        //S4_TC03
         product1.productDetail(product);
         review.writeReview("Test", "demo@gmail.com", "Không có review");
         boolean isReview = review.isReviewSuccess();
-        assertTrue( "Không thêm review vào ", isReview);
+        assertTrue( "Can't be add to review ", isReview);
+        driver.findElement(By.xpath("//a[@href='/']")).click();
     }
 }

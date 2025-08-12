@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="S3 commit">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Review.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/APIGetUserList.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/FillInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/FillInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +32,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="Scenario4" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -49,7 +50,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Scenario4&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/TRANG/Documents/java/Automationexercise/src/main/java/org/example/Main.java&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
@@ -121,7 +122,8 @@
     <MESSAGE value="S2_1 commit" />
     <MESSAGE value="S2_2 commit" />
     <MESSAGE value="S3 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="S3 commit" />
+    <MESSAGE value="S4 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="S4 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

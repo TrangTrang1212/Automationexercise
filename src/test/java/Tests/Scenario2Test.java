@@ -29,8 +29,9 @@ public class Scenario2Test extends BaseTest {
         register = new Register(driver);
     }
     @Test
-    public void s2_TC03(){
+    public void deleteAccountTest(){
         try {
+            //S2_TC03
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             String uniqueEmail = "demo@yyyq" + System.currentTimeMillis() % 10000 + ".vn";
             register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
@@ -41,14 +42,7 @@ public class Scenario2Test extends BaseTest {
             String text = deleteTitle.getText();
             assertTrue("Account hasn't been delete", text.contains("ACCOUNT DELETED!"));
             System.out.println(text);
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
-    }
-    @Test
-    public void s2_TC04(){
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            //S2_TC03
             login.loginWith(generatedEmail,"123456");
             WebElement erorr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
             String textError = erorr.getText();
@@ -58,6 +52,5 @@ public class Scenario2Test extends BaseTest {
             fail("Error " +e.getMessage());
         }
     }
-
 
 }

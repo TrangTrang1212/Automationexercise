@@ -36,9 +36,11 @@ public class Scenario1Test extends BaseTest {
         logout = new Logout(driver);
         login = new Login(driver);
     }
-    @Test (priority = 1)
-    public void s1_TC01(){
+    @Test
+    public void signupLoginLogout(){
         try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            //s1_TC01
             String uniqueEmail = "demo@testt" + System.currentTimeMillis() % 10000 + ".vn";
             register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
             if (register.isRegisterSuccess()) {
@@ -47,53 +49,35 @@ public class Scenario1Test extends BaseTest {
                 System.out.println("Register failed.");
             }
             generatedEmail = uniqueEmail;
+
+            //s1_TC02
             //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
-    }
-    @Test(priority = 2)
-    public void s1_TC02(){
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
+            logout.logout();
+            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
             fillInfo.fillSignupInfo("demo", generatedEmail);
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='btn btn-default' and @data-qa='signup-button']"))).click();
             WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[3]/div/form/p")));
             String texterorr = text.getText();
             System.out.println(texterorr);
             assertTrue(texterorr.contains("Email Address already exist!"), "Chưa có account tồn tại");
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
-    }
-    @Test(priority = 3)
-    public void s1_TC03(){
-        try {
+            //s1_TC03
             login.loginWith(generatedEmail,"123456");
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")));
-            String textTitle = text.getText();
+            WebElement text1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")));
+            String textTitle = text1.getText();
             System.out.println(textTitle);
             assertTrue(textTitle.contains("Logged in as"),"Login failed");
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
-    }
-    @Test(priority = 4)
-    public void s1_TC04(){
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            //s1_TC04
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Logout']"))).click();
             login.loginWith(generatedEmail,"12345");
-            WebElement erorr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
-            String textError = erorr.getText();
-            System.out.println(textError);
-            assertTrue(textError.contains("Your email or password is incorrect!"), "Login success");
+            WebElement erorr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
+            String textError1 = erorr1.getText();
+            System.out.println(textError1);
+            assertTrue(textError1.contains("Your email or password is incorrect!"), "Login success");
         }catch (Exception e){
             fail("Error " +e.getMessage());
         }
     }
+
     @Test(enabled = false)
     public void s1_TC07(){
         try {

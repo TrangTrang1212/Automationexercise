@@ -39,16 +39,25 @@ public class BaseTest {
                 System.setProperty("webdriver.chrome.driver", "C:\\Drivers\\chromedriver-win64\\chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
 
+                // Chặn save password + password leak detection
                 Map<String, Object> prefs = new HashMap<>();
-                prefs.put("credentials_enable_service", false); // disable save password prompt
-                prefs.put("profile.password_manager_enabled", false); // disable password manager
-                prefs.put("profile.default_content_setting_values.notifications", 2); // block notifications
-                prefs.put("profile.default_content_setting_values.geolocation", 2); // block location
-                prefs.put("autofill.profile_enabled", false); // disable autofill (e.g., "Save address?" popup)
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                prefs.put("profile.default_content_setting_values.notifications", 2); // Block notifications
+                prefs.put("profile.default_content_setting_values.geolocation", 2);    // Block location
+                prefs.put("autofill.profile_enabled", false); // Disable autofill
 
                 chromeOptions.setExperimentalOption("prefs", prefs);
 
-                // Remove "Chrome is being controlled by automated software" message
+                // Chặn thông báo "Change your password"
+                chromeOptions.addArguments("--disable-features=PasswordManagerEnabled");
+                chromeOptions.addArguments("--disable-features=PasswordLeakDetection");
+                chromeOptions.addArguments("--disable-features=PasswordCheck");
+
+                // Chạy incognito để không dùng mật khẩu đã lưu
+                chromeOptions.addArguments("--incognito");
+
+                // Loại bỏ "Chrome is being controlled by automated software"
                 chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
                 chromeOptions.setExperimentalOption("useAutomationExtension", false);
 
@@ -100,7 +109,7 @@ public class BaseTest {
 
             if (registerPage.isRegisterSuccess() || login.isLoginSuccess()) {
                 logoutPage.logout();
-                System.out.println("Successfully logged out after test.");
+               // System.out.println("Successfully logged out after test.");
             } else {
                 System.out.println("Logout skipped due to failed registration or login.");
             }

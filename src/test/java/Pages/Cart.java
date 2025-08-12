@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 import static org.testng.AssertJUnit.fail;
 
@@ -51,7 +52,7 @@ public class Cart {
             return false;
         }
     }
-    public boolean isViewCartSuccess(String qty){
+    public boolean isViewCartSuccess_01(String qty){
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/view_cart']/u"))).click();
@@ -76,4 +77,5 @@ public class Cart {
             return false;
         }
     }
+
 }

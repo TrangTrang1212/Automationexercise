@@ -18,26 +18,23 @@ public class Scenario3Test extends BaseTest {
             search = new Search(driver);
         }
         @Test
-        public void s3_TC01(){
+        public void fillterTest(){
             String ca = "Men";
             String sub = "Tshirts";
-            category.categories(ca, sub);
-            boolean isSuccess = category.isSuccessCategory(ca, sub);
-            assertTrue( "Không tìm thấy tiêu đề: ", isSuccess);
-        }
-        @Test
-        public void s3_TC02(){
             String brand = "Polo";
-            category.brands(brand);
-            boolean isSuccess = category.isSuccessBrand(brand);
-            assertTrue( "Không tìm thấy tiêu đề: ", isSuccess);
-        }
-        @Test
-        public void s3_TC03(){
             String keyword = "Tshirt";
+            //S3_01
+            category.categories(ca, sub);
+            boolean isSuccessCategory = category.isSuccessCategory(ca, sub);
+            assertTrue( "Not found title: ", isSuccessCategory);
+            //S3_02
+            category.brands(brand);
+            boolean isSuccessBrand = category.isSuccessBrand(brand);
+            assertTrue( "Not found title: ", isSuccessBrand);
+            //S3_03
             search.search(keyword);
-            // Kiểm tra danh sách sản phẩm
             boolean areProductsRelated = search.isSuccessSearch(keyword);
-            assertTrue("Không phải tất cả sản phẩm đều chứa từ khóa: ", areProductsRelated);
+            assertTrue("Not found product: ", areProductsRelated);
         }
+
 }
