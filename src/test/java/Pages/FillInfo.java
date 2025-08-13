@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.AssertJUnit;
 import org.testng.FileAssert;
 
 import java.time.Duration;
@@ -84,6 +85,29 @@ public class FillInfo {
             reviewField.sendKeys(review);
         }catch (Exception e){
             FileAssert.fail("Test error: " +e.getMessage());
+        }
+
+    }
+    public void fillPayment(String nameCard, String numberCard, String cvc, String expiration, String year){
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            WebElement nameCardField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='form-control' and @name ='name_on_card']")));
+            nameCardField.clear();
+            nameCardField.sendKeys(nameCard);
+            WebElement numberCardField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='form-control card-number' and @name ='card_number']")));
+            numberCardField.clear();
+            numberCardField.sendKeys(numberCard);
+            WebElement cvcField= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='form-control card-cvc' and @name ='cvc']")));
+            cvcField.clear();
+            cvcField.sendKeys(cvc);
+            WebElement expirationField= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='form-control card-expiry-month' and @name ='expiry_month']")));
+            expirationField.clear();
+            expirationField.sendKeys(expiration);
+            WebElement yearField= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@class='form-control card-expiry-year' and @name ='expiry_year']")));
+            yearField.clear();
+            yearField.sendKeys(year);
+        }catch (Exception e){
+            AssertJUnit.fail("Error: " +e.getMessage());
         }
     }
 }

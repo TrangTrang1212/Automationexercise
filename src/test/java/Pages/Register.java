@@ -13,8 +13,8 @@ import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.fail;
 
 public class Register {
-    protected WebDriver driver;
     private FillInfo fillInfo;
+    protected WebDriver driver;
     public Register(WebDriver driver){
         this.driver = driver;
         fillInfo = new FillInfo(driver);

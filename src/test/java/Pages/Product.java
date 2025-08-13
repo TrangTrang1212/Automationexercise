@@ -36,10 +36,13 @@ public class Product {
             imgText = img.getAttribute("src");
             //System.out.println(imgText);
             //Click vào button View detail
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='productinfo text-center']/p[text()='"+ product + "']/../../..//a[@href='/product_details/1' and contains(., 'View Product')]"))).click();
+            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='productinfo text-center']/p[text()='" + product + "']/../../..//a[contains(@href, '/product_details/') and contains(., 'View Product')]"))).click();
         }catch (Exception e){
             fail("Error " +e.getMessage());
         }
+    }
+    public String getPrice() {
+        return textPrice;
     }
     public boolean isMatchProduct(String product){
         try {

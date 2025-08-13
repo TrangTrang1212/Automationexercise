@@ -13,8 +13,9 @@ import static org.testng.Assert.fail;
 public class Login {
     protected WebDriver driver;
     public Login(WebDriver driver){
-        this.driver = driver;
+        this.driver=driver;
     }
+
     public void loginWith(String email, String pw){
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

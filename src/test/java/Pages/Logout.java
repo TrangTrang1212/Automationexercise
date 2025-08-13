@@ -14,6 +14,7 @@ public class Logout {
     public Logout(WebDriver driver){
         this.driver = driver;
     }
+
     public void logout(){
         try {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));

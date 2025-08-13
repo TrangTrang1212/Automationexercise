@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ScrollUtil {
-    private WebDriver driver;
+    protected WebDriver driver;
     public ScrollUtil(WebDriver driver){
         this.driver = driver;
     }

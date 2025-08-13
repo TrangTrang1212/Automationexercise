@@ -11,9 +11,9 @@ import java.time.Duration;
 import static org.testng.AssertJUnit.fail;
 
 public class Review {
-    protected WebDriver driver;
     private ScrollUtil scrollUtil;
     private FillInfo fillInfo;
+    protected WebDriver driver;
     public Review(WebDriver driver){
         this.driver = driver;
         scrollUtil = new ScrollUtil(driver);

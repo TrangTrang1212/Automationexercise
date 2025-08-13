@@ -12,7 +12,7 @@ import java.util.List;
 import static org.testng.AssertJUnit.fail;
 
 public class Search {
-    private WebDriver driver;
+    protected WebDriver driver;
     private ScrollUtil scrollUtil;
     public Search(WebDriver driver){
         this.driver = driver;
