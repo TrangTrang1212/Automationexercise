@@ -13,10 +13,11 @@
             <class name="Tests.Scenario3Test"/>
             <class name="Tests.Scenario4Test"/>
             <class name="Tests.Scenario5Test"/>
+            <class name="Tests.Scenario7Test"/>
         </classes>
-    </test>
+        </test>
 
-    <!-- Scenario - Firefox -->
+<!-- Scenario - Firefox -->
     <test name="Scenario - Firefox">
         <parameter name="browser" value="firefox"/>
         <classes>
@@ -25,10 +26,11 @@
             <class name="Tests.Scenario3Test"/>
             <class name="Tests.Scenario4Test"/>
             <class name="Tests.Scenario5Test"/>
+            <class name="Tests.Scenario7Test"/>
         </classes>
-    </test>
+        </test>
 
-    <!-- Scenario - Edge -->
+<!-- Scenario - Edge -->
     <test name="Scenario - Edge">
         <parameter name="browser" value="edge"/>
         <classes>
@@ -37,6 +39,7 @@
             <class name="Tests.Scenario3Test"/>
             <class name="Tests.Scenario4Test"/>
             <class name="Tests.Scenario5Test"/>
+            <class name="Tests.Scenario7Test"/>
         </classes>
     </test>
 </suite>

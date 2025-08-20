@@ -1,12 +1,9 @@
 package Pages;
 
+import DTO.PaymentInfo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,46 +11,51 @@ import static org.testng.AssertJUnit.fail;
 
 public class Order {
     protected WebDriver driver;
-    private Product productPage;
-    private Login login;
-    private Cart cart;
-    private ScrollUtil scrollUtil;
     private FillInfo fillInfo;
+    private ActionHelper actions;
+
+    //=====Locator=====
+    private static final By PROCESS_TO_CHECKOUT_BTN = By.xpath("//a[@class='btn btn-default check_out']");
+    private static final By CHECKOUT_TEXT = By.xpath("//li[@class='active']");
+    private static final String CHECKOUT_PAGE = "Checkout";
+    private static final By VIEW_CART_LINK = By.xpath("//a[@href='/view_cart']");
+    private static final By CART_ITEM_LIST = By.xpath("//div[@class='table-responsive cart_info']/table[@class='table table-condensed']");
+    private static final By PRODUCT_NAME_CART = By.xpath(".//a[contains(@href, '/product_details/')]");
+    private static final By PRODUCT_CATEGORY_CART = By.xpath("//td[@class='cart_description']/p");
+    private static final By PRODUCT_PRICE_CART = By.xpath("//td[@class='cart_price']/p");
+    private static final By PRODUCT_QTY_CART = By.xpath("//td[@class='cart_quantity']/button");
+    private static final By PRODUCT_TOTAL_CART = By.xpath("//p[@class='cart_total_price']");
+    private static final By VIEW_ITEM_CHECKOUT = By.id("cart_info");
+    private static final By SUBMIT_BTN = By.id("submit");
+    private static final By PLACE_ORDER_SUCCESS = By.xpath("//h2[@class='title text-center']/b");
+    private static final String PLACE_ORDER_MESSAGE = "ORDER PLACED!";
+
     public Order(WebDriver driver){
         this.driver = driver;
-        login = new Login(driver);
-        productPage = new Product(driver);
-        scrollUtil = new ScrollUtil(driver);
         fillInfo = new FillInfo(driver);
+        actions = new ActionHelper(driver);
     }
-    public void checkout(){
+    public void clickProcessToCheckoutBTN(){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='btn btn-default check_out']"))).click();
-            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/login']/u"))).click();
+            actions.click(PROCESS_TO_CHECKOUT_BTN);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            fail("clickProcessToCheckoutBTN was error: " +e.getMessage());
         }
     }
     public boolean isCheckOutProcess(){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement textCheckout = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[@class='active']")));
-            String checkoutText = textCheckout.getText();
-            System.out.println(checkoutText);
-            return checkoutText.contains("Checkout");
-
+            String checkoutText = actions.getText(CHECKOUT_TEXT);
+            return checkoutText.equalsIgnoreCase(CHECKOUT_PAGE);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            fail("isCheckOutProcess was error: " +e.getMessage());
             return false;
         }
     }
     public boolean checkViewMatchOrder() {
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
             //cartView
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@href='/view_cart']"))).click();
-            List<WebElement> cartViews = driver.findElements(By.xpath("//table[contains(@class,'cart_info')]//tr[contains(@class,'cart_item')]"));
+            actions.click(VIEW_CART_LINK);
+            List<WebElement> cartViews = actions.getVisibleElements(CART_ITEM_LIST);
             String[] nameCart = new String[cartViews.size()];
             String[] categoryCart = new String[cartViews.size()];
             String[] priceCart = new String[cartViews.size()];
@@ -61,15 +63,15 @@ public class Order {
             String[] totalProductCart = new String[cartViews.size()];
             for (int i = 0; i < cartViews.size(); i++) {
                 WebElement product = cartViews.get(i);
-                nameCart[i] = product.findElement(By.xpath(".//a[contains(@href, '/product_details/')]")).getText().trim();
-                categoryCart[i] = product.findElement(By.xpath("//td[@class='cart_description']/p")).getText().trim();
-                priceCart[i] = product.findElement(By.xpath("//td[@class='cart_price']/p")).getText().trim();
-                qtyCart[i] = product.findElement(By.xpath("//td[@class='cart_quantity']/button")).getText().trim();
-                totalProductCart[i] = product.findElement(By.xpath("//p[@class='cart_total_price']")).getText().trim();
+                nameCart[i] = actions.getChildText(product, PRODUCT_NAME_CART);
+                categoryCart[i] = actions.getChildText(product, PRODUCT_CATEGORY_CART);
+                priceCart[i] = actions.getChildText(product, PRODUCT_PRICE_CART);
+                qtyCart[i] = actions.getChildText(product, PRODUCT_QTY_CART);
+                totalProductCart[i] = actions.getChildText(product, PRODUCT_TOTAL_CART);
             }
-            checkout();
-            scrollUtil.scrollToElement(driver, By.className("heading"));
-            List<WebElement> orderViews = driver.findElements(By.xpath("//table[contains(@class,'cart_info')]//tr[contains(@class,'cart_item')]"));
+            clickProcessToCheckoutBTN();
+            actions.scrollToElement(driver, VIEW_ITEM_CHECKOUT);
+            List<WebElement> orderViews = actions.getVisibleElements(CART_ITEM_LIST);
             String[] nameOrder = new String[orderViews.size()];
             String[] categoryOrder = new String[orderViews.size()];
             String[] priceOrder = new String[orderViews.size()];
@@ -77,12 +79,11 @@ public class Order {
             String[] totalProductOrder = new String[orderViews.size()];
             for (int i = 0; i < orderViews.size(); i++) {
                 WebElement product = orderViews.get(i);
-                nameOrder[i] = product.findElement(By.xpath(".//a[contains(@href, '/product_details/')]")).getText().trim();
-                categoryOrder[i] = product.findElement(By.xpath(".//td[@class='cart_description']/p")).getText().trim();
-                priceOrder[i] = product.findElement(By.xpath("//td[@class='cart_price']/p")).getText().trim();
-                qtyOrder[i] = product.findElement(By.xpath("//td[@class='cart_quantity']/button")).getText().trim();
-                totalProductOrder[i] = product.findElement(By.xpath("//p[@class='cart_total_price']")).getText().trim();
-
+                nameOrder[i] = actions.getChildText(product, PRODUCT_NAME_CART);
+                categoryOrder[i] = actions.getChildText(product, PRODUCT_CATEGORY_CART);
+                priceOrder[i] = actions.getChildText(product, PRODUCT_PRICE_CART);
+                qtyOrder[i] = actions.getChildText(product, PRODUCT_QTY_CART);
+                totalProductOrder[i] = actions.getChildText(product, PRODUCT_TOTAL_CART);
             }
             boolean isNameMatch = Arrays.equals(nameCart, nameOrder);
             boolean isCategoryMatch = Arrays.equals(categoryCart, categoryOrder);
@@ -91,29 +92,25 @@ public class Order {
             boolean isTotalProductMatch = Arrays.equals(totalProductCart, totalProductOrder);
             return isNameMatch && isCategoryMatch && isPriceMatch && isQtyMatch && isTotalProductMatch;
         } catch (Exception e) {
-            fail("Error: " + e.getMessage());
+            fail("checkViewMatchOrder was error: " + e.getMessage());
             return false;
         }
     }
-    public void placeOrder(String nameCard, String numberCard, String cvc, String expiration, String year){
+    public void placeOrder(PaymentInfo paymentInfo){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='btn btn-default check_out']"))).click();
-            fillInfo.fillPayment(nameCard, numberCard,cvc, expiration,year);
-            wait.until(ExpectedConditions.elementToBeClickable(By.id("submit"))).click();
-
+            actions.click(PROCESS_TO_CHECKOUT_BTN);
+            fillInfo.fillPayment(paymentInfo);
+            actions.click(SUBMIT_BTN);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            fail("placeOrder was error: " +e.getMessage());
         }
     }
     public boolean isPlaceOrderSuccessfully(){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement titleText = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center']/b")));
-            String textSuccess = titleText.getText();
-            return textSuccess.contains("ORDER PLACED!");
+            String textSuccess = actions.getText(PLACE_ORDER_SUCCESS);
+            return textSuccess.contains(PLACE_ORDER_MESSAGE);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            fail("isPlaceOrderSuccessfully was error: " +e.getMessage());
             return false;
         }
     }

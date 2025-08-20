@@ -2,70 +2,70 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static org.testng.AssertJUnit.fail;
+import org.testng.Assert;
 
 public class Category {
     protected WebDriver driver;
-    private ScrollUtil scrollUtil;
+    private Cart cartPage;
+    private ActionHelper action;
+    // ====== Dynamic Locators ======
+    private By getCategorySelection (String ca){
+        return By.xpath("//a[@href='#" + ca + "' and @data-toggle='collapse']");
+    }
+    private By getSubCategorySelection(String sub){
+        return By.xpath("//a[text()='" + sub + " ']");
+    }
+    private By getBrandSelection(String brand){
+        return By.xpath("//a[text()='" + brand + "']");
+    }
+    private static final By CATEGORY_SCROLL = By.xpath("//div[@class='left-sidebar']");
+    private static final By BRAND_SCROLL = By.xpath("//div[@class='brands_products']");
+    private static final By PRODUCT_LINK = By.xpath("//a[@href='/products']");
+    private static final By TITLE_TEXT = By.xpath("//h2[@class = 'title text-center']");
+
     public Category(WebDriver driver){
         this.driver = driver;
-        scrollUtil = new ScrollUtil(driver);
+        cartPage = new Cart(driver);
+        action = new ActionHelper(driver);
     }
-
     public void categories(String ca, String sub){
         try {
-            scrollUtil.scrollToElement(driver, By.xpath("//div[@class='left-sidebar']"));
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='#" + ca + "' and @data-toggle='collapse']"))).click();
-            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//i[@class = 'fa fa-plus']"))).click();
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + sub + " ']"))).click();
+            action.scrollToElement(driver, CATEGORY_SCROLL);
+            action.click(getCategorySelection(ca));
+            action.click(getSubCategorySelection(sub));
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            Assert.fail("Categories was error: " +e.getMessage());
         }
     }
     public void brands(String brand){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/products']"))).click();
-            scrollUtil.scrollToElement(driver, By.xpath("//div[@class='brands_products']"));
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()='" + brand + "']"))).click();
+            action.click(PRODUCT_LINK);
+            action.scrollToElement(driver, BRAND_SCROLL);
+            action.click(getBrandSelection(brand));
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            Assert.fail("Brands was error: " +e.getMessage());
         }
     }
     public boolean isSuccessCategory(String ca, String sub){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class = 'title text-center']")));
-            String title = textTitle.getText();
-            String expectedTitle = String.format("%s - %s Products", ca, sub).toUpperCase();;
-            //System.out.println("Actual title: " + title);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/']"))).click();
-            return title.contains(expectedTitle);
+            String title = action.getText(TITLE_TEXT);
+            String expectedTitle = String.format("%s - %s Products", ca, sub).toUpperCase();
+            cartPage.navigateToHome();
+            return title.equalsIgnoreCase(expectedTitle);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            Assert.fail("isSuccessCategory was error: " +e.getMessage());
             return false;
         }
     }
     public boolean isSuccessBrand(String brand){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            WebElement textTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class = 'title text-center']")));
-            String title = textTitle.getText();
-            String expectedTitle = String.format("Brand - %s Products", brand).toUpperCase();;
-            //System.out.println("Actual title: " + title);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/']"))).click();
-            return title.contains(expectedTitle);
+            String title = action.getText(TITLE_TEXT);
+            String expectedTitle = String.format("Brand - %s Products", brand).toUpperCase();
+            cartPage.navigateToHome();
+            return title.equalsIgnoreCase(expectedTitle);
         }catch (Exception e){
-            fail("Error: " +e.getMessage());
+            Assert.fail("isSuccessCategory was error: " +e.getMessage());
             return false;
         }
     }
-
 }

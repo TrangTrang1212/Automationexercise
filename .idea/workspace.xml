@@ -4,20 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario5Test.java" afterDir="false" />
+    <list default="true" id="ae18a301-ed0a-42d5-80ee-ee02a4fd4eef" name="Changes" comment="S7 commit">
+      <change afterPath="$PROJECT_DIR$/src/test/java/DTO/AccountInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/DTO/PaymentInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/ActionHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/ContactUs.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/DataHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Pages/Subscribe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario7Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Cart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/FillInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/FillInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Logout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Product.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Review.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Review.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/ScrollUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/ScrollUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Pages/ScrollUtil.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/Pages/Search.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Pages/Search.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario2Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario3Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario4Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/Tests/Scenario5Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/Tests/Scenario5Test.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/testng.xml" beforeDir="false" afterPath="$PROJECT_DIR$/testng.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -33,7 +45,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/Scenario3" />
+    <option name="BRANCH" value="Scenario5Test" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -56,11 +68,36 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Scenario5Test&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Scenario7&quot;,
     &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/TRANG/Documents/java/Automationexercise/src/main/java/org/example/Main.java&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
 }</component>
+  <component name="RunManager">
+    <configuration name="Scenario5Test.verifyCartandCheckoutMatchItem" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Automationexercise" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Tests" />
+      <option name="MAIN_CLASS_NAME" value="Tests.Scenario5Test" />
+      <option name="METHOD_NAME" value="verifyCartandCheckoutMatchItem" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.Scenario5Test.verifyCartandCheckoutMatchItem" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -145,6 +182,17 @@
     <option name="localTasksCounter" value="10" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
     <MESSAGE value="S1 commit" />
@@ -156,7 +204,8 @@
     <MESSAGE value="S4_1 commit" />
     <MESSAGE value="S4_2 commit" />
     <MESSAGE value="S4_3 commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="S4_3 commit" />
+    <MESSAGE value="S7 commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="S7 commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -165,6 +214,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>
           <line>15</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Tests/Scenario1Test.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

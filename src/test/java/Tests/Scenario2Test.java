@@ -1,59 +1,38 @@
 package Tests;
 
-import Pages.BaseTest;
-import Pages.ExtentReportListener;
-import Pages.Login;
-import Pages.Register;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import DTO.AccountInfo;
+import Pages.*;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.lang.reflect.Method;
-import java.time.Duration;
-
 import static org.testng.AssertJUnit.assertTrue;
-import static org.testng.AssertJUnit.fail;
 
 public class Scenario2Test extends BaseTest {
     private Login login;
     private Register register;
     private String generatedEmail;
+    private static final String PASSWORD_CORRECTLY = "123456";
 
     @BeforeMethod
     public void beforeEachMethod(Method method){
-        //super.beforeMethod(method); // Gọi log từ BaseTest
         login = new Login(driver);
         register = new Register(driver);
     }
-    @Test
-    public void deleteAccountTest(){
-        try {
-            //S2_TC03
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            String uniqueEmail = "demo@yyyq" + System.currentTimeMillis() % 10000 + ".vn";
-            register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
-            generatedEmail = uniqueEmail;
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@href='/delete_account']"))).click();
-            WebElement deleteTitle = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center' and @data-qa='account-deleted']/child::b")));
-            String text = deleteTitle.getText();
-            assertTrue("Account hasn't been delete", text.contains("ACCOUNT DELETED!"));
-            ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT DELETED! successfully");
-            //System.out.println(text);
-            //S2_TC03
-            login.loginWith(generatedEmail,"123456");
-            WebElement erorr = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
-            String textError = erorr.getText();
-            System.out.println(textError);
-            Assert.assertTrue(textError.contains("Your email or password is incorrect!"), "Login success");
-            ExtentReportListener.logStepWithScreenshot(driver, "Your email or password is incorrect! message displayed");
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
+    @Test(priority = 1)
+    public void deleteAccount(){
+        generatedEmail = DataHelper.generateUniqueEmail();
+        register.goToSignUpForm("demo", generatedEmail);
+        AccountInfo accountInfo = new AccountInfo("Mrs", PASSWORD_CORRECTLY, "10", "8", "2003", "Yes", "No", "test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000", "0987654321");
+        register.completeAccountInfo(accountInfo);
+        register.signupLoginLink();
+        assertTrue("Account hasn't been delete", login.isDeleteAccountSuccess());
+        ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT DELETED! successfully");
     }
-
+    @Test(priority = 2)
+    public void verifyAccountAfterDelete(){
+        login.loginWith(generatedEmail,"123456");
+        Assert.assertTrue(login.isLoginFailed(), "Login success");
+        ExtentReportListener.logStepWithScreenshot(driver, "Incorrect password message displayed");
+    }
 }

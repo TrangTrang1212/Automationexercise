@@ -1,20 +1,13 @@
 package Tests;
 
+import DTO.AccountInfo;
 import Pages.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.json.JSONObject;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import java.lang.reflect.Method;
-import java.time.Duration;
-
 import static io.restassured.RestAssured.given;
 import static org.testng.Assert.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
@@ -24,61 +17,46 @@ import static org.testng.AssertJUnit.fail;
 
 public class Scenario1Test extends BaseTest {
     private Register register;
-    private FillInfo fillInfo;
     private Logout logout;
     private String generatedEmail;
     private Login login;
+
+    private static final String PASSWORD_VALID = "123456";
+    private static final String PASSWORD_INVALID = "12345";
     @BeforeMethod
     public void beforeEachMethod(Method method){
-        //super.beforeMethod(method); // Gọi log từ BaseTest
         register = new Register(driver);
-        fillInfo = new FillInfo(driver);
         logout = new Logout(driver);
         login = new Login(driver);
     }
-    @Test
-    public void signupLoginLogout(){
-        try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            //s1_TC01
-            String uniqueEmail = "demo@testt" + System.currentTimeMillis() % 10000 + ".vn";
-            register.registerWith("demo", uniqueEmail, "Mrs", "123456","10", "8","2003","No","No","test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000","0987654321");
-            WebElement textSignup = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//h2[@class='title text-center']/child::b")));
-            String textTitleSignup = textSignup.getText();
-            System.out.println(textTitleSignup);
-            assertTrue(textTitleSignup.contains("ACCOUNT CREATED!"), "Email Address already exist!");
-            ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT CREATED! success");
-            generatedEmail = uniqueEmail;
-
-            //s1_TC02
-            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
-            logout.logout();
-            //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Signup / Login']"))).click();
-            fillInfo.fillSignupInfo("demo", generatedEmail);
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='btn btn-default' and @data-qa='signup-button']"))).click();
-            WebElement text = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[3]/div/form/p")));
-            String texterorr = text.getText();
-            System.out.println(texterorr);
-            assertTrue(texterorr.contains("Email Address already exist!"), "Chưa có account tồn tại");
-            ExtentReportListener.logStepWithScreenshot(driver, "Email already exist! message displayed");
-            //s1_TC03
-            login.loginWith(generatedEmail,"123456");
-            WebElement text1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='header']/div/div/div/div[2]/div/ul/li[10]/a")));
-            String textTitle = text1.getText();
-            System.out.println(textTitle);
-            assertTrue(textTitle.contains("Logged in as"),"Login failed");
-            ExtentReportListener.logStepWithScreenshot(driver, "Login successful with correct password");
-            //s1_TC04
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[text()=' Logout']"))).click();
-            login.loginWith(generatedEmail,"12345");
-            WebElement erorr1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='form']/div/div/div[1]/div/form/p")));
-            String textError1 = erorr1.getText();
-            System.out.println(textError1);
-            assertTrue(textError1.contains("Your email or password is incorrect!"), "Login success");
-            ExtentReportListener.logStepWithScreenshot(driver, "Incorrect password message displayed");
-        }catch (Exception e){
-            fail("Error " +e.getMessage());
-        }
+    @Test(priority = 1)
+    public void registerNewAccount(){
+        generatedEmail = DataHelper.generateUniqueEmail();
+        register.goToSignUpForm("demo", generatedEmail);
+        AccountInfo accountInfo = new AccountInfo("Mrs", PASSWORD_VALID, "10", "8", "2003", "Yes", "No", "test", "test", "123 abdf", "Singapore", "HCM", "HCM", "700000", "0987654321");
+        register.completeAccountInfo(accountInfo);
+        assertTrue(register.isRegisterSuccess(), "Account creation failed!");
+        ExtentReportListener.logStepWithScreenshot(driver, "ACCOUNT CREATED! success");
+    }
+    @Test(priority = 2)
+    public void registerExistAccount(){
+        logout.logout();
+        register.goToSignUpForm("demo",generatedEmail);
+        assertTrue(register.isRegisterFailed(), "Account hadn't been exist");
+        ExtentReportListener.logStepWithScreenshot(driver, "Email already exist! message displayed");
+    }
+    @Test(priority = 3)
+    public void loginWithCorrectPassword(){
+        login.loginWith(generatedEmail,PASSWORD_VALID);
+        assertTrue(login.isLoginSuccess(),"Login failed");
+        ExtentReportListener.logStepWithScreenshot(driver, "Login successful with correct password");
+        logout.logoutButton();
+    }
+    @Test(priority = 4)
+    public void loginWithIncorrectPassword(){
+        login.loginWith(generatedEmail,PASSWORD_INVALID);
+        assertTrue(login.isLoginFailed(), "Login success");
+        ExtentReportListener.logStepWithScreenshot(driver, "Incorrect password message displayed");
     }
 
     @Test(enabled = false)

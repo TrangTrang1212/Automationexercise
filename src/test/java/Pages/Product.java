@@ -1,44 +1,48 @@
 package Pages;
 
-import org.openqa.selenium.Alert;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
 import static org.testng.AssertJUnit.fail;
 
 public class Product {
     protected WebDriver driver;
-    private ScrollUtil scrollUtil;
     private String imgText;
     private String textPrice;
+    private ActionHelper action;
+
+    // ====== Dynamic Locators ======
+    private By getPricePDP(String productName){
+        return By.xpath("//div[contains(@class, 'single-products')]//p[contains(text(), '"+ productName + "')]/../h2");
+    }
+    private By getImgPDP(String productName){
+        return By.xpath("//div[contains(@class, 'single-products')]//p[text()='"+ productName + "']/../..//img");
+    }
+    private By getViewDetailButton(String productName){
+        return By.xpath("//div[@class='productinfo text-center']/p[text()='" + productName + "']/../../..//a[contains(@href, '/product_details/') and contains(., 'View Product')]");
+    }
+    //Locators
+    private static final By FEATURES_ITEM = By.xpath("//div[@class='features_items']");
+    private static final By PRODUCT_NAME_PLP = By.xpath("//div[contains(@class, 'product-information')]/h2");
+    private static final By PRODUCT_PRICE_PLP = By.xpath("//div[contains(@class, 'product-information')]/span/span[not(label)]");
+    private static final By PRODUCT_IMG_PLP = By.xpath("//div[contains(@class, 'view-product')]/img");
 
     public Product(WebDriver driver){
         this.driver = driver;
-        scrollUtil = new ScrollUtil(driver);
+        action = new ActionHelper(driver);
     }
-    public void productDetail(String product){
 
+    public void saveProductInfo(String productName){
+        textPrice = action.getText(getPricePDP(productName));
+        imgText = action.getAttribute(getImgPDP(productName),"src");
+    }
+    public void productDetail(String productName){
         try {
-            //Cuộn đến vị trí list product
-            scrollUtil.scrollToElement(driver, By.xpath("//div[@class='features_items']"));
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            //Lấy giá tiền
-            WebElement price = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'single-products')]//p[contains(text(), '"+ product + "')]/../h2")));
-            textPrice = price.getText();
-            //System.out.println(textPrice);
-            //Lấy attribute link hình
-            WebElement img = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'single-products')]//p[text()='"+ product + "']/../..//img")));
-            imgText = img.getAttribute("src");
-            //System.out.println(imgText);
-            //Click vào button View detail
-            wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='productinfo text-center']/p[text()='" + product + "']/../../..//a[contains(@href, '/product_details/') and contains(., 'View Product')]"))).click();
+            action.scrollToElement(driver, FEATURES_ITEM);
+            saveProductInfo(productName);
+            action.click(getViewDetailButton(productName));
         }catch (Exception e){
-            fail("Error " +e.getMessage());
+            fail("productDetail was error " +e.getMessage());
         }
     }
     public String getPrice() {
@@ -46,27 +50,17 @@ public class Product {
     }
     public boolean isMatchProduct(String product){
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            String textProductName = action.getText(PRODUCT_NAME_PLP);
+            String textPriceDetail = action.getText(PRODUCT_PRICE_PLP);
+            String textImgDetail =action.getAttribute(PRODUCT_IMG_PLP,"src");
 
-            WebElement productName = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'product-information')]/h2")));
-            String textProductName = productName.getText();
-            //System.out.println(textProductName);
-
-            WebElement priceDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'product-information')]/span/span[not(label)]")));
-            String textPriceDetail = priceDetail.getText();
-            //System.out.println(textPriceDetail);
-
-            WebElement imgDetail = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(@class, 'view-product')]/img")));
-            String textImgDetail = imgDetail.getAttribute("src");
-            //System.out.println(textImgDetail);
-            // So sánh img src
             boolean isImgSrcMatch = imgText.equals(textImgDetail);
             boolean isPriceMatch = textPrice.equals(textPriceDetail);
             boolean isProductMatch = product.equals(textProductName);
-            return isImgSrcMatch && isPriceMatch && isProductMatch;
 
+            return isImgSrcMatch && isPriceMatch && isProductMatch;
         }catch (Exception e){
-            fail("Error " +e.getMessage());
+            fail("isMatchProduct was error " +e.getMessage());
             return false;
         }
     }

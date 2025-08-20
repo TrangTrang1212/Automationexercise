@@ -71,21 +71,6 @@ public class BaseTest {
         System.out.println("=== Starting Test Case: " + method.getName() + " | Browser: " + driverName() + " ===");
     }
 
-    @AfterMethod
-    public void tearDownMethod() {
-        try {
-            Logout logoutPage = new Logout(driver);
-            Register registerPage = new Register(driver);
-            Login login = new Login(driver);
-
-            if (registerPage.isRegisterSuccess() || login.isLoginSuccess()) {
-                logoutPage.logout();
-            }
-        } catch (Exception e) {
-            System.out.println("Error during logout: " + e.getMessage());
-        }
-    }
-
     @AfterClass
     public void tearDown() {
         if (driver != null) {
